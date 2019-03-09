@@ -19,6 +19,7 @@ Then
 The server has no commands. It can only be controlled by a client.  
 
 The client has the following commands available:  
+ - `\?` (show command list)
  - `\q`                      (quit)
  - `\username billy joe`     (change username)
  - `\style ...`              (change display style)
