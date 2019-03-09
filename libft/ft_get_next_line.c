@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 11:05:27 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 13:42:33 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:24:22 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t		get_leaf_size(void)
 {
 	size_t	leaf_size;
 
-	leaf_size = BUFF_SIZE;
+	leaf_size = GNL_BUFF_SIZE;
 	while (leaf_size < MIN_LEAF_SIZE)
 	{
 		leaf_size <<= 1;
@@ -61,14 +61,14 @@ static int			hat_getline(t_fdhandler *h)
 {
 	while ((!(h->found)) && (h->bytes_to_eof))
 	{
-		if (h->index % BUFF_SIZE == 0 && h->bytes_to_eof != 0)
+		if (h->index % GNL_BUFF_SIZE == 0 && h->bytes_to_eof != 0)
 		{
 			h->check = (char *)ft_hataccess(h->hat, h->index);
 			MALLOC_GUARD(h->check);
-			h->bytes = read(h->fd, h->check, BUFF_SIZE);
+			h->bytes = read(h->fd, h->check, GNL_BUFF_SIZE);
 			if (h->bytes < 0)
 				return (GNL_ERROR);
-			if (h->bytes < BUFF_SIZE)
+			if (h->bytes < GNL_BUFF_SIZE)
 				h->bytes_to_eof = h->bytes;
 			if (h->bytes_to_eof == 0)
 				return (GNL_OK);
@@ -105,7 +105,7 @@ static void			hat_cleanup(t_fdhandler *h)
 **		ft_hatprint(h->hat, FT_HAT_PRINTMODE_ASC);
 */
 
-int					get_next_line(const int fd, char **line)
+int					ft_get_next_line(const int fd, char **line)
 {
 	static t_fdhandler	*of = NULL;
 	t_fdhandler_u		*current;

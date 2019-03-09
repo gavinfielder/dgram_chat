@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:56:15 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 20:26:54 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:48:34 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	process_message(t_program_control *ctl)
 		ctl->lock_send = 1;
 		strncpy(ctl->send_buff, ctl->recv_buff + 22, 4);
 		ctl->lock_send = 0;
-		ft_printf("Welcome. The server has set your user id to %.4s\n",
+		ft_printf("%{green}Welcome. Your user id is %.4s%{}\n",
 				ctl->recv_buff + 22);
 	}
 	else if (strncmp(ctl->recv_buff, "**The server is closing now.", 28) == 0)
 	{
 		ctl->exit = 1;
-		ft_printf("The chat server is closing. Exiting now.\n");
+		ft_printf("%{yellow}The chat server is closing. Exiting now.%{}\n");
 		ft_printf("Press ENTER to exit...\n");
 	}
 	else
@@ -47,7 +47,7 @@ void		*listen_for_messages(void *ctl_void)
 				NULL, NULL);
 		if (bytes_received < 0)
 		{
-			ft_printf("Error in reception thread. Closing thread now.\n");
+			ft_printf("Error in reception thread. Setting exit flag.\n");
 			ctl->exit = 1;
 		}
 		else

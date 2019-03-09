@@ -6,14 +6,14 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 22:34:35 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 22:34:52 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:24:52 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_GET_NEXT_LINE_H
 # define FT_GET_NEXT_LINE_H
 
-# define BUFF_SIZE 17
+# define GNL_BUFF_SIZE 1
 # define MIN_LEAF_SIZE 128
 
 # define GNL_EOF 0
@@ -65,6 +65,6 @@ typedef union			u_fdhandler
 	t_fdhandler			a;
 }						t_fdhandler_u;
 
-int						get_next_line(const int fd, char **line);
+int						ft_get_next_line(const int fd, char **line);
 
 #endif

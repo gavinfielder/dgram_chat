@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:06:02 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 22:22:13 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:40:15 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <netinet/in.h>
 # include <unistd.h>
 # include <arpa/inet.h>
+# include <errno.h>
+# include <stdarg.h>
 
 # define BUFF_SIZE 512
 # define USERNAME_SIZE 20
@@ -50,6 +52,10 @@ typedef struct			s_server
 	t_user				*from_user;
 }						t_server;
 
+/*
+** ----------------------------- User Management -------------------------------
+*/
+
 t_user					*add_user(t_user **head,
 							struct sockaddr_in address,
 							socklen_t addr_len, int with_id);
@@ -58,15 +64,26 @@ int						extract_id(char *buff);
 void					delete_all_users(t_user **head);
 int						replace_uid_with_username(t_user *head,
 							char *buff, int len);
-void					program_loop(t_server *server);
+
+/*
+** ------------------------------ Transmission  --------------------------------
+*/
+
 void					broadcast_message(t_server *server,
 							const char *fmt, ...);
 void					send_message(t_server *server, t_user *user,
 							const char *fmt, ...);
+
+/*
+** --------------------------------- General -----------------------------------
+*/
+
+void					program_loop(t_server *server);
 int						process_command(t_server *server);
 char					*get_help(void);
 int						cmd_style(t_server *server);
 int						pong_pong(t_server *server, struct sockaddr *addr,
 							socklen_t len);
+int						daemonize(pid_t parent);
 
 #endif

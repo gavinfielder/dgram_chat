@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:10:11 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 20:56:51 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:28:37 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_user		*add_user(t_user **head, struct sockaddr_in address,
 	ft_bzero(user, sizeof(t_user));
 	user->client_address = address;
 	user->client_address_len = addr_len;
-	ft_strcpy(user->username, "Anonymous");
+	ft_strcpy(user->username, "New User");
 	if (*head == NULL)
 	{
 		*head = user;

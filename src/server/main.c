@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:05:02 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 22:33:09 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:32:12 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void		determine_user(t_server *server,
 	server->from_user = get_user(server->users, uid);
 	if (server->from_user == NULL)
 	{
+		broadcast_message(server, "New User has entered chat.\n");
 		server->from_user = add_user(&(server->users),
 			from_address, from_address_len, uid);
 		send_message(server, server->from_user,
@@ -84,23 +85,26 @@ void			program_loop(t_server *server)
 	}
 }
 
-int				main(void)
+int				main(int ac, char **av)
 {
 	t_server	server;
+	pid_t		pid;
 
+	pid = getpid();
+	if (ac > 1 && av[1][0] == '-' && ft_strchr(av[1], 'D') && daemonize(pid))
+		return (0);
 	server.server_address.sin_family = AF_INET;
-	server.server_address.sin_port = htons(9005);
+	server.server_address.sin_port = htons(SERVER_PORT);
 	server.server_address.sin_addr.s_addr = inet_addr(SERVER_IP_ADDRESS);
 	server.sock = socket(AF_INET, SOCK_DGRAM, 0);
-	if (bind(server.sock,
-				(struct sockaddr *)(&(server.server_address)),
+	if (bind(server.sock, (struct sockaddr *)(&(server.server_address)),
 				sizeof(server.server_address)) < 0)
 	{
-		ft_printf("Bind failed.\n");
+		ft_printf("Bind failed with errno=%i.\n", errno);
 		return (-1);
 	}
 	server.users = NULL;
-	ft_printf("Welcome to dgram chat server.\n");
+	ft_printf("%{bright yellow}Welcome to DGram chat server.%{}\n");
 	program_loop(&server);
 	broadcast_message(&server, "**The server is closing now.");
 	delete_all_users(&(server.users));

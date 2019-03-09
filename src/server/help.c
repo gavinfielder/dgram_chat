@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 20:33:09 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 21:14:59 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:51:28 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ char	*get_help(void)
 	char			*ret;
 
 	sb = ft_sbnew();
-	ft_sbwrite(sb, "DGram Chat Server: Available Commands:\n");
-	ft_sbwrite(sb, "   \\q                 leaves chat.\n");
-	ft_sbwrite(sb, "   \\username  name    changes username.\n");
-	ft_sbwrite(sb, "   \\style ...         changes text style.\n");
-	ft_sbwrite(sb, "\n");
-	ft_sbwrite(sb, "        see readme for style options.\n");
+	ft_sbprintf(sb, "%{yellow underline}DGram Chat Server: ");
+	ft_sbprintf(sb, "Available Commands:%{}\n");
+	ft_sbprintf(sb, "   %{bold}\\q%{}                 leaves chat.\n");
+	ft_sbprintf(sb, "   %{bold}\\username %{green} name%{}    ");
+	ft_sbprintf(sb, "changes username.\n");
+	ft_sbprintf(sb, "   %{bold}\\style %{green}...%{}         ");
+	ft_sbprintf(sb, "changes text style.\n");
+	ft_sbprintf(sb, "\n");
+	ft_sbprintf(sb, "  %{underline}Style options%{}: red green yellow blue ");
+	ft_sbprintf(sb, "magenta cyan white black\n");
+	ft_sbprintf(sb, "                 bright dim italic underline ");
+	ft_sbprintf(sb, "[color]-background\n");
 	ret = ft_sbtostr(sb);
 	ft_sbdel(&sb);
 	return (ret);

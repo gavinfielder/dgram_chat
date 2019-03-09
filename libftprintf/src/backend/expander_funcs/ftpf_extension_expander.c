@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 12:05:56 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 00:34:07 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 13:34:33 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ const t_ftpf_ext_dict_entry	g_ftpf_ext_dict[] =
 	{"magenta", 1, 35},
 	{"cyan", 1, 36},
 	{"white", 1, 37},
-	{"bold", 0, 1},
+	{"bright", 0, 1},
 	{"dim", 0, 2},
-	{"underline", 0, 3},
-	{"blink", 0, 4},
+	{"italic", 0, 3},
+	{"underline", 0, 4},
 	{"reverse", 0, 5},
 	{"hidden", 0, 6},
 	{"black", 1, 30},
@@ -65,7 +65,7 @@ const t_ftpf_ext_dict_entry	g_ftpf_ext_dict[] =
 	{"", -1, -1}
 };
 
-t_ftpf_extension_spec			ftpf_extension_read(char **words)
+static t_ftpf_extension_spec	ftpf_extension_read(char **words)
 {
 	t_ftpf_extension_spec	spec;
 	int						i;

@@ -6,14 +6,13 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:50:38 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 22:52:30 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:40:52 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DGRAM_CHAT_H
 # define DGRAM_CHAT_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <sys/socket.h>
 # include <sys/types.h>

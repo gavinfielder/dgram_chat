@@ -6,16 +6,20 @@
 #    By: gfielder <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/08 11:48:26 by gfielder          #+#    #+#              #
-#    Updated: 2019/03/08 22:59:11 by gfielder         ###   ########.fr        #
+#    Updated: 2019/03/09 12:35:13 by gfielder         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 
 # ---------------------------------------------------------------------------- #
 # Edit this line to specifiy the lab computer the server is running on         #
                                                                                #
-SERVER_NAME=e1z2r7p37
+SERVER_NAME=e1z3r4p7
+                                                                               #
+# ---------------------------------------------------------------------------- #
+# Use this if you want to change the port                                      #
+                                                                               #
+SERVER_PORT=24622
                                                                                #
 # ---------------------------------------------------------------------------- #
 
@@ -25,7 +29,8 @@ SERVER_IP_2=$(shell echo -n $(SERVER_NAME) | awk -Fr '{print $$2}' | sed "s/p.*$
 SERVER_IP_3=$(shell echo -n $(SERVER_NAME) | awk -Fp '{print $$2}')
 SERVER_IP="\"$(SERVER_IP_1).$(SERVER_IP_2).$(SERVER_IP_3)\""
 
-CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -Wall -Wextra -Werror -g
+# CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -Werror -g
+CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -g
 LIBFTDIR=libft
 LIBFTPRINTFDIR=libftprintf
 LIB=-L $(LIBFTDIR) -lft -L $(LIBFTPRINTFDIR) -lftprintf
@@ -34,7 +39,8 @@ LIBFT=$(LIBFTDIR)/libft.a
 LIBFTPRINTF=$(LIBFTPRINTFDIR)/libftprintf.a
 
 SERVER_SRC=src/server/main.c src/server/broadcast.c src/server/user.c \
-		   src/server/commands.c src/server/help.c src/server/style.c
+		   src/server/commands.c src/server/help.c src/server/style.c \
+		   src/server/daemon.c
 CLIENT_SRC=src/client/main.c src/client/listen.c src/client/utils.c
 
 SERVER_ONAME="server"

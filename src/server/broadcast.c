@@ -6,12 +6,11 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:10:48 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 22:32:41 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:38:56 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dgram_chat_server.h"
-#include <stdarg.h>
 
 void	broadcast_message(t_server *server, const char *fmt, ...)
 {

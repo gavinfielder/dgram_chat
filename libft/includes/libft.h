@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 19:50:30 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 22:35:09 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:25:27 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,6 @@ void				ft_msputnchar(t_multistringer *ms, char c, int n);
 ** ----------------------------------- I/O -------------------------------------
 */
 
-int					get_next_line(const int fd, char **line);
+int					ft_get_next_line(const int fd, char **line);
 
 #endif
