@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 23:03:48 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 00:27:28 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:36:16 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,5 @@ typedef struct						s_ftpf_extension_spec
 {
 	int								codes[3];
 }									t_ftpf_extension_spec;
-
-
-
-
-
 
 #endif

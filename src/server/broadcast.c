@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:10:48 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 19:38:01 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:32:41 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,15 @@ void	send_message(t_server *server, t_user *user,
 		ft_printf("Error sending packet of bytes=%i to user.\n", success);
 		return ;
 	}
-	ft_printf("Sending message of %i bytes to %s. The message is \"%.30s\"\n",
-			success, inet_ntoa(user->client_address.sin_addr), server->send_buff);
 	sent_bytes = sendto(server->sock, server->send_buff, success, 0,
 			((struct sockaddr *)(&(user->client_address))),
 			user->client_address_len);
 	if (sent_bytes < 0)
 		ft_printf("Error sending packet to user.\n");
+}
+
+int		pong_pong(t_server *server, struct sockaddr *addr, socklen_t len)
+{
+	sendto(server->sock, "pong pong", 9, 0, addr, len);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:05:02 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 21:41:24 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:33:09 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ static int		make_echo_bot(t_server *server)
 int				process_message(t_server *server)
 {
 	ft_printf("Handling Message: \"%s\"\n", server->buff);
-	if (server->buff[UID_LEN] == '\\')
+	if (ft_strncmp(server->buff + UID_LEN, "ping", 4) == 0
+			|| ft_strncmp(server->buff + UID_LEN, "\\ping", 5) == 0)
+		return (pong_pong(server,
+			(struct sockaddr *)(&(server->from_user->client_address)),
+			server->from_user->client_address_len));
+	else if (server->buff[UID_LEN] == '\\')
 		return (process_command(server));
 	else
 		broadcast_message(server, "%s%s: %s%{}",
@@ -66,14 +71,17 @@ void			program_loop(t_server *server)
 				server->buff, BUFF_SIZE, 0,
 				(struct sockaddr *)(&from_address),
 				(socklen_t *)(&from_address_len));
-		determine_user(server, from_address, from_address_len);
-		server->buff[server->bytes_received] = '\0';
-		if (process_message(server) == 0)
-			break ;
+		if (ft_strncmp(server->buff, "ping", 4) == 0)
+			pong_pong(server, (struct sockaddr *)(&from_address),
+					from_address_len);
+		else
+		{
+			determine_user(server, from_address, from_address_len);
+			server->buff[server->bytes_received] = '\0';
+			if (process_message(server) == 0)
+				break ;
+		}
 	}
-	broadcast_message(server, "**The server is closing now.");
-	delete_all_users(&(server->users));
-	close(server->sock);
 }
 
 int				main(void)
@@ -94,5 +102,8 @@ int				main(void)
 	server.users = NULL;
 	ft_printf("Welcome to dgram chat server.\n");
 	program_loop(&server);
+	broadcast_message(&server, "**The server is closing now.");
+	delete_all_users(&(server.users));
+	close(server.sock);
 	return (0);
 }

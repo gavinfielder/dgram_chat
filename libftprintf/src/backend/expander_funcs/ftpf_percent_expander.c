@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 11:26:59 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/07 22:05:34 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:49:50 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 **   Expander functions must update md->next_arg_num if they access data.
 ** -----------------------------------------------------------------------------
 */
-
-//TODO: make a unit test for testing whether %% can take field width.
 
 int								ftpf_percent_expander(
 									t_ftpf_master_data *md)

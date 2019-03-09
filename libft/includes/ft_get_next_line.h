@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_get_next_line.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/16 11:09:13 by gfielder          #+#    #+#             */
-/*   Updated: 2019/02/23 01:12:50 by gfielder         ###   ########.fr       */
+/*   Created: 2019/03/08 22:34:35 by gfielder          #+#    #+#             */
+/*   Updated: 2019/03/08 22:34:52 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef FT_GET_NEXT_LINE_H
+# define FT_GET_NEXT_LINE_H
 
 # define BUFF_SIZE 17
 # define MIN_LEAF_SIZE 128

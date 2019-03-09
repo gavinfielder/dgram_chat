@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 22:54:50 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 13:23:57 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:45:39 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ typedef unsigned int					t_ftuint4;
 typedef unsigned short					t_ftuint2;
 typedef unsigned char					t_ftuint1;
 
-typedef struct	s_ftpf_master_data		t_ftpf_master_data;
-typedef struct	s_ftpf_expandler		t_ftpf_expandler;
+typedef struct s_ftpf_master_data		t_ftpf_master_data;
+typedef struct s_ftpf_expandler			t_ftpf_expandler;
 typedef	int		(*t_ftpf_expander_func)	(t_ftpf_master_data *);
 typedef int		(*t_ftpf_checker_func)	(t_ftpf_expandler *);
+typedef	t_ftint8	(*t_ftpf_sint_ga)	(t_ftpf_master_data *);
 
 struct									s_ftpf_expandler
 {
@@ -111,7 +112,7 @@ struct									s_ftpf_expandler
 	t_ftpf_expander_func				expand;
 };
 
-struct							s_ftpf_master_data
+struct									s_ftpf_master_data
 {
 	int									i;
 	int									max_len;
@@ -127,8 +128,6 @@ struct							s_ftpf_master_data
 **              Specific expansion helper functions and structures
 ** -----------------------------------------------------------------------------
 */
-
-typedef long long	(*t_ftpf_sint_ga)	(t_ftpf_master_data *);
 
 long long								ftpf_sint_get_arg_4
 											(t_ftpf_master_data *md);
@@ -261,4 +260,3 @@ int										ftpf_extension_expander(
 											t_ftpf_master_data *md);
 
 #endif
-

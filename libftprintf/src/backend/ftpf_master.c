@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:30:36 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/07 14:52:20 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:48:35 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static int			ftpf_master_helper(const char *fmt, t_ftpf_master_data *md)
 	return (md->len);
 }
 
-int				ftpf_master(t_multistringer *ms, const char *fmt, int max_len,
-					va_list args)
+int					ftpf_master(t_multistringer *ms, const char *fmt,
+						int max_len, va_list args)
 {
 	t_ftpf_master_data	md;
 	t_ftpf_expandler	ex;

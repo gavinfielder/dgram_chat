@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:00:04 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/08 21:25:54 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:31:22 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void		init(t_program_control *ctl)
 	ft_printf("  or \\? to see a list of commands.\n");
 	set_username(ctl);
 }
+
 void			program_loop(t_program_control *ctl)
 {
 	ssize_t		chars_in_line;

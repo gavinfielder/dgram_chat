@@ -6,7 +6,7 @@
 #    By: gfielder <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/08 11:48:26 by gfielder          #+#    #+#              #
-#    Updated: 2019/03/08 21:18:00 by gfielder         ###   ########.fr        #
+#    Updated: 2019/03/08 22:59:11 by gfielder         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,14 +56,14 @@ server: $(SERVER_SRC) $(LIBDEPEND)
 	@make -C $(LIBFTDIR) > /dev/null
 	@make -C $(LIBFTPRINTFDIR) > /dev/null
 	@clang $(CFLAGS) $(INC) $(LIB) -o $(SERVER_ONAME) $(SERVER_SRC)
-	@echo "DGram Chat Server made. Run with .\\$(SERVER_ONAME)"
+	@echo "DGram Chat Server made. Run with ./$(SERVER_ONAME)"
 
 client: $(CLIENT_SRC) $(LIBDEPEND)
 	@echo "Server name is \"$(SERVER_NAME)\". If this is not correct, edit the Makefile and \`make client\` again."
 	@make -C $(LIBFTDIR) > /dev/null
 	@make -C $(LIBFTPRINTFDIR) > /dev/null
 	@clang $(CFLAGS) $(INC) $(LIB) -o $(CLIENT_ONAME) $(CLIENT_SRC)
-	@echo "DGram Chat Client made. Run with .\\$(CLIENT_ONAME)"
+	@echo "DGram Chat Client made. Run with ./$(CLIENT_ONAME)"
 
 clean:
 	@make -C $(LIBFTDIR) clean
