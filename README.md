@@ -23,6 +23,7 @@ The client has the following commands available:
  - `\username billy joe`     (change username)
  - `\style ...`              (change display style)
  - `\ping`                   (does a thing. Incidentally, it does the same thing if you send `ping`, or if you happen to figure out how to hack it to send it a raw `ping` datagram.)
+ - A secret command for shutting down the server. You can find it in the source code.
 
  The style options available are: `red` `green` `yellow` `blue` `magenta` `cyan` `white` `bold` `dim` `underline` `blink` `reverse` `hidden` `black` `black-background` `red-background` `green-background` `yellow-background` `blue-background` `magenta-background` `cyan-background` `white-background`  
  You can mix and match style options, e.g. `\style red underline yellow-background`    
