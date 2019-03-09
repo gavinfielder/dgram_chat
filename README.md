@@ -26,7 +26,7 @@ The client has the following commands available:
 
  The style options available are: `red` `green` `yellow` `blue` `magenta` `cyan` `white` `bold` `dim` `underline` `blink` `reverse` `hidden` `black` `black-background` `red-background` `green-background` `yellow-background` `blue-background` `magenta-background` `cyan-background` `white-background`  
  You can mix and match style options, e.g. `\style red underline yellow-background`    
- You may notice some commands aren't appropriately named...   
+ You may notice some style options aren't appropriately named...  my ft_printf will fix that in its final version.
 
 ## Credits
 
