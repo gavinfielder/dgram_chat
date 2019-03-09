@@ -1,0 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/08 13:00:04 by gfielder          #+#    #+#             */
+/*   Updated: 2019/03/08 21:25:54 by gfielder         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "dgram_chat.h"
+
+static void		set_username(t_program_control *ctl)
+{
+	ssize_t		chars_in_line;
+	size_t		line_allocation;
+	char		*line;
+
+	ft_printf("Enter your username (up to %i characters) > ", USERNAME_SIZE);
+	line_allocation = BUFF_SIZE;
+	line = (char *)malloc(BUFF_SIZE);
+	chars_in_line = getline(&line, &line_allocation, stdin);
+	strip_newlines(line, (int)chars_in_line);
+	chars_in_line = (ssize_t)strlen(line);
+	send_message(ctl, "\\username %s", line);
+}
+
+static void		init(t_program_control *ctl)
+{
+	ctl->buff_size = BUFF_SIZE - UID_LEN;
+	ctl->server_address.sin_family = AF_INET;
+	ctl->server_address.sin_port = htons(9005);
+	ctl->server_address.sin_addr.s_addr = inet_addr(SERVER_IP_ADDRESS);
+	ctl->address_len = sizeof(ctl->server_address);
+	ctl->sock = socket(AF_INET, SOCK_DGRAM, 0);
+	ctl->lock_send = 0;
+	ctl->exit = 0;
+	ft_strncpy(ctl->send_buff, "0000", 4);
+	ctl->send_buff[4] = '\0';
+	ft_printf("Welcome to dgram chat. Type \\q to quit.");
+	ft_printf("  or \\? to see a list of commands.\n");
+	set_username(ctl);
+}
+void			program_loop(t_program_control *ctl)
+{
+	ssize_t		chars_in_line;
+	size_t		line_allocation;
+	char		*line;
+
+	line_allocation = BUFF_SIZE;
+	line = (char *)malloc(BUFF_SIZE);
+	while (!(ctl->exit))
+	{
+		chars_in_line = getline(&line, &line_allocation, stdin);
+		strip_newlines(line, (int)chars_in_line);
+		chars_in_line = (ssize_t)strlen(line);
+		if (line[0] == '\\' && line[1] == 'q')
+			ctl->exit = 1;
+		send_message(ctl, "%s", line);
+	}
+}
+
+int				main(void)
+{
+	t_program_control	ctl;
+	pthread_t			thread_id;
+
+	init(&ctl);
+	pthread_create(&thread_id, NULL, listen_for_messages, (void *)(&ctl));
+	program_loop(&ctl);
+	ctl.exit = 1;
+	pthread_join(thread_id, NULL);
+	close(ctl.sock);
+	return (0);
+}
