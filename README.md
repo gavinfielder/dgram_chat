@@ -29,6 +29,10 @@ The client has the following commands available:
  The style options available are: `red` `green` `yellow` `blue` `magenta` `cyan` `white` `bold` `dim` `underline` `blink` `reverse` `hidden` `black` `black-background` `red-background` `green-background` `yellow-background` `blue-background` `magenta-background` `cyan-background` `white-background`  
  You can mix and match style options, e.g. `\style red underline yellow-background`    
 
+## Known Limitations
+
+Some 42SV lab computers give you errno 49 "Protocol Driver not attached" error when trying to bind using UDP protocol. This simply can't be used on those machines.  
+
 ## Credits
 
 All the code was written by me.
