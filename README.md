@@ -31,7 +31,7 @@ The client has the following commands available:
 
 ## Known Limitations
 
-Some 42SV lab computers give you errno 49 "Protocol Driver not attached" error when trying to bind using UDP protocol. This simply can't be used on those machines.  
+Some 42SV lab computers give you errno 49 "Protocol Driver not attached" error when trying to bind using UDP protocol. The server can't run on these machines. The client may be able to still, since they never actually bind...
 
 ## Credits
 

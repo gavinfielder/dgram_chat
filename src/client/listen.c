@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:56:15 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/09 14:48:34 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:13:15 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 static void	process_message(t_program_control *ctl)
 {
-	if (strncmp(ctl->recv_buff, "**Welcome. Your ID is ", 22) == 0)
+	if (ft_strncmp(ctl->recv_buff, "**Welcome. Your ID is ", 22) == 0)
 	{
 		while (ctl->lock_send)
 			;
 		ctl->lock_send = 1;
-		strncpy(ctl->send_buff, ctl->recv_buff + 22, 4);
+		ft_strncpy(ctl->send_buff, ctl->recv_buff + 22, 4);
 		ctl->lock_send = 0;
 		ft_printf("%{green}Welcome. Your user id is %.4s%{}\n",
 				ctl->recv_buff + 22);
 	}
-	else if (strncmp(ctl->recv_buff, "**The server is closing now.", 28) == 0)
+	else if (ft_strncmp(ctl->recv_buff,
+				"**The server is closing now.", 28) == 0)
 	{
 		ctl->exit = 1;
 		ft_printf("%{yellow}The chat server is closing. Exiting now.%{}\n");
