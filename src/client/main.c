@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:00:04 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/09 14:49:35 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 16:06:21 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		set_username(t_program_control *ctl)
 	//size_t		line_allocation;
 	char		*line;
 
-	ft_printf("%{yellow}Enter your username (up to %i characters) > %{}",
+	ft_printf("%{dim cyan}Enter your username (up to %i characters)%{} > ",
 			USERNAME_SIZE);
 	//line_allocation = BUFF_SIZE;
 	//line = (char *)malloc(BUFF_SIZE);
@@ -43,8 +43,8 @@ static void		init(t_program_control *ctl)
 	ctl->exit = 0;
 	ft_strncpy(ctl->send_buff, "0000", 4);
 	ctl->send_buff[4] = '\0';
-	ft_printf("%{italic yellow}Welcome to DGram Chat. Type \\q to quit%{}\n");
-	ft_printf("%{italic yellow}  or \\? to see a list of commands.%{}\n");
+	ft_printf("%{bright yellow}Welcome to DGram Chat. Type \\q to quit%{}\n");
+	ft_printf("%{bright yellow}  or \\? to see a list of commands.%{}\n");
 	set_username(ctl);
 }
 

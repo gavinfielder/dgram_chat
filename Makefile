@@ -6,7 +6,7 @@
 #    By: gfielder <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/08 11:48:26 by gfielder          #+#    #+#              #
-#    Updated: 2019/03/09 12:35:13 by gfielder         ###   ########.fr        #
+#    Updated: 2019/03/09 16:02:33 by gfielder         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # ---------------------------------------------------------------------------- #
 # Edit this line to specifiy the lab computer the server is running on         #
                                                                                #
-SERVER_NAME=e1z3r4p7
+SERVER_NAME=e1z2r7p24
                                                                                #
 # ---------------------------------------------------------------------------- #
 # Use this if you want to change the port                                      #
@@ -23,14 +23,12 @@ SERVER_PORT=24622
                                                                                #
 # ---------------------------------------------------------------------------- #
 
-
 SERVER_IP_1="10.112"
 SERVER_IP_2=$(shell echo -n $(SERVER_NAME) | awk -Fr '{print $$2}' | sed "s/p.*$$//g")
 SERVER_IP_3=$(shell echo -n $(SERVER_NAME) | awk -Fp '{print $$2}')
 SERVER_IP="\"$(SERVER_IP_1).$(SERVER_IP_2).$(SERVER_IP_3)\""
 
-# CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -Werror -g
-CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -g
+CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -Werror -g
 LIBFTDIR=libft
 LIBFTPRINTFDIR=libftprintf
 LIB=-L $(LIBFTDIR) -lft -L $(LIBFTPRINTFDIR) -lftprintf
@@ -71,6 +69,13 @@ client: $(CLIENT_SRC) $(LIBDEPEND)
 	@clang $(CFLAGS) $(INC) $(LIB) -o $(CLIENT_ONAME) $(CLIENT_SRC)
 	@echo "DGram Chat Client made. Run with ./$(CLIENT_ONAME)"
 
+simple_tester: src/simple_tester/main.c
+	@echo "Server name is \"$(SERVER_NAME)\". If this is not correct, edit the Makefile and \`make simple_tester\` again."
+	@make -C $(LIBFTDIR) > /dev/null
+	@make -C $(LIBFTPRINTFDIR) > /dev/null
+	@clang $(CFLAGS) $(INC) $(LIB) -o simple_tester src/simple_tester/main.c
+	@echo "Simple Tester made. Run with ./simple_tester"
+
 clean:
 	@make -C $(LIBFTDIR) clean
 	@make -C $(LIBFTPRINTFDIR) clean 
@@ -81,4 +86,10 @@ fclean:
 	@rm -rf *.dSYM
 	@rm -f $(SERVER_ONAME)
 	@rm -f $(CLIENT_ONAME)
+	@rm -f simple_tester
 	@make clean
+
+re:
+	@make fclean
+	@make server
+	@make client
