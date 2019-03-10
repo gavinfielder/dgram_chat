@@ -12,11 +12,11 @@ Then
 Anyone can `make client`, but they still need to modify the makefile to point to the right server machine)  
 
 Then  
-`./client` or `./server`  
+`./client` or `./server` or `./server -D` to run the server as daemon.  
 
 ## Usage
 
-The server has no commands. It can only be controlled by a client.  
+The server has no commands. It can only be controlled by a client.
 
 The client has the following commands available:  
  - `\?` (show command list)
@@ -28,7 +28,6 @@ The client has the following commands available:
 
  The style options available are: `red` `green` `yellow` `blue` `magenta` `cyan` `white` `bold` `dim` `underline` `blink` `reverse` `hidden` `black` `black-background` `red-background` `green-background` `yellow-background` `blue-background` `magenta-background` `cyan-background` `white-background`  
  You can mix and match style options, e.g. `\style red underline yellow-background`    
- You may notice some style options aren't appropriately named...  my ft_printf will fix that in its final version.
 
 ## Credits
 

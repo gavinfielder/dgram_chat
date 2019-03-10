@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:00:04 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/09 16:06:21 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 16:45:59 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,10 @@
 static void		set_username(t_program_control *ctl)
 {
 	ssize_t		chars_in_line;
-	//size_t		line_allocation;
 	char		*line;
 
 	ft_printf("%{dim cyan}Enter your username (up to %i characters)%{} > ",
 			USERNAME_SIZE);
-	//line_allocation = BUFF_SIZE;
-	//line = (char *)malloc(BUFF_SIZE);
-
-	//chars_in_line = getline(&line, &line_allocation, stdin);
-	//strip_newlines(line, (int)chars_in_line);
-	//chars_in_line = (ssize_t)strlen(line);
 	chars_in_line = (ssize_t)ft_get_next_line(0, &line);
 	send_message(ctl, "\\username %s", line);
 	free(line);
@@ -51,17 +44,11 @@ static void		init(t_program_control *ctl)
 void			program_loop(t_program_control *ctl)
 {
 	ssize_t		chars_in_line;
-	//size_t		line_allocation;
 	char		*line;
 
-	//line_allocation = BUFF_SIZE;
-	//line = (char *)malloc(BUFF_SIZE);
 	line = NULL;
 	while (!(ctl->exit))
 	{
-		//chars_in_line = getline(&line, &line_allocation, stdin);
-		//strip_newlines(line, (int)chars_in_line);
-		//chars_in_line = (ssize_t)strlen(line);
 		chars_in_line = (ssize_t)ft_get_next_line(0, &line);
 		if (line[0] == '\\' && line[1] == 'q')
 			ctl->exit = 1;

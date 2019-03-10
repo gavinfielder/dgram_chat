@@ -6,7 +6,7 @@
 /*   By: gfielder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 15:12:31 by gfielder          #+#    #+#             */
-/*   Updated: 2019/03/09 15:43:24 by gfielder         ###   ########.fr       */
+/*   Updated: 2019/03/09 16:13:48 by gfielder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	my_send(int sock, struct sockaddr_in *server_address, char *str)
 	ft_putstr(str);
 	ft_putstr("\"\n");
 	success = sendto(sock, str, ft_strlen(str), 0,
-			(struct sockaddr *)(&server_address),
-			sizeof(server_address));
+			(struct sockaddr *)(server_address),
+			sizeof(struct sockaddr_in));
 	if (success < 0)
 	{
 		ft_putstr("Send failed with errno=");

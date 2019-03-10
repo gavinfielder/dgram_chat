@@ -6,7 +6,7 @@
 #    By: gfielder <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/08 11:48:26 by gfielder          #+#    #+#              #
-#    Updated: 2019/03/09 16:16:14 by gfielder         ###   ########.fr        #
+#    Updated: 2019/03/09 16:48:59 by gfielder         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SERVER_NAME=e1z2r7p24
 # ---------------------------------------------------------------------------- #
 # Use this if you want to change the port                                      #
                                                                                #
-SERVER_PORT=23622
+SERVER_PORT=24622
                                                                                #
 # ---------------------------------------------------------------------------- #
 
@@ -28,7 +28,7 @@ SERVER_IP_2=$(shell echo -n $(SERVER_NAME) | awk -Fr '{print $$2}' | sed "s/p.*$
 SERVER_IP_3=$(shell echo -n $(SERVER_NAME) | awk -Fp '{print $$2}')
 SERVER_IP="\"$(SERVER_IP_1).$(SERVER_IP_2).$(SERVER_IP_3)\""
 
-CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -Werror -g
+CFLAGS=-D SERVER_IP_ADDRESS=$(SERVER_IP) -D SERVER_PORT=$(SERVER_PORT) -Wall -Wextra -Werror
 LIBFTDIR=libft
 LIBFTPRINTFDIR=libftprintf
 LIB=-L $(LIBFTDIR) -lft -L $(LIBFTPRINTFDIR) -lftprintf
